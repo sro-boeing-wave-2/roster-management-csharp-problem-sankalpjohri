@@ -20,6 +20,7 @@ namespace RosterManagement
         /// <param name="wave">Refers to the Wave number</param>
         public void Add(string cadet, int wave)
         {
+            // Check if the roster dictionary conatins the wave.
             if (!_roster.ContainsKey(wave)) {
                 _roster.Add(wave, new List<string>());
             }
