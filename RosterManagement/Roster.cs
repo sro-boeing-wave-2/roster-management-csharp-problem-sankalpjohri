@@ -25,6 +25,7 @@ namespace RosterManagement
                 _roster.Add(wave, new List<string>());
             }
             _roster[wave].Add(cadet);
+            _roster[wave] = _roster[wave].OrderBy(cadetName => cadetName).ToList();
         }
 
         /// <summary>
@@ -34,12 +35,11 @@ namespace RosterManagement
         /// <returns>List of Cadet's Name</returns>
         public List<string> Grade(int wave)
         {
-            var list = new List<String>();
             if (_roster.ContainsKey(wave))
             {
-                list = _roster[wave].OrderBy(cadet => cadet).ToList();
+                return _roster[wave];
             }
-            return list;
+            return new List<string>();
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace RosterManagement
             var waves = _roster.Keys.OrderBy(key => key);
             foreach (int wave in waves)
             {
-                cadets.AddRange(_roster[wave].OrderBy(cadet => cadet).ToList());
+                cadets.AddRange(_roster[wave]);
             }
             return cadets;
         }
